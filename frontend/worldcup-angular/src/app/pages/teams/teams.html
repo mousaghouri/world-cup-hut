@@ -1,1 +1,66 @@
-<p>teams works!</p>
+<!-- PAGE HEADER -->
+<section style="background: linear-gradient(135deg, #0a0a0a, #001a3a); padding: 60px 0 40px;">
+  <div class="container text-center">
+    <p class="text-warning fw-bold text-uppercase" style="letter-spacing: 4px; font-size: 0.85rem;">FIFA World Cup 2026</p>
+    <h1 class="display-3 fw-black text-white mb-3">National <span class="text-warning">Teams</span></h1>
+    <p class="text-secondary fs-5">All qualified teams for the 2026 World Cup</p>
+  </div>
+</section>
+
+<!-- SEARCH BAR -->
+<section class="py-4" style="background-color: #1a1a1a;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6">
+        <input 
+          type="text" 
+          class="form-control form-control-lg bg-dark text-white border-warning"
+          placeholder="🔍 Search teams..."
+          (input)="filterTeams($event)"
+          style="border-radius: 50px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAMS GRID -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-4" *ngFor="let team of filteredTeams">
+        <div class="card p-4 rounded-4 h-100">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <span style="font-size: 3rem;">{{ team.flag }}</span>
+            <div>
+              <h5 class="text-white fw-bold mb-0">{{ team.name }}</h5>
+              <span class="badge bg-warning text-dark small">{{ team.confederation }}</span>
+            </div>
+          </div>
+          <div class="row g-2 text-center">
+            <div class="col-4">
+              <div class="text-warning fw-bold fs-5">{{ team.titles }}</div>
+              <div class="text-secondary" style="font-size: 0.7rem;">TITLES</div>
+            </div>
+            <div class="col-4">
+              <div class="text-warning fw-bold fs-5">{{ team.appearances }}</div>
+              <div class="text-secondary" style="font-size: 0.7rem;">WC APPS</div>
+            </div>
+            <div class="col-4">
+              <div class="text-warning fw-bold fs-5">{{ team.fifaRank }}</div>
+              <div class="text-secondary" style="font-size: 0.7rem;">FIFA RANK</div>
+            </div>
+          </div>
+          <hr style="border-color: #333;">
+          <p class="text-secondary small mb-1">⭐ Star Player: <span class="text-white">{{ team.starPlayer }}</span></p>
+          <p class="text-secondary small mb-0">🧑‍💼 Coach: <span class="text-white">{{ team.coach }}</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- No results -->
+    <div *ngIf="filteredTeams.length === 0" class="text-center py-5">
+      <div style="font-size: 4rem;">🔍</div>
+      <p class="text-secondary fs-5 mt-3">No teams found. Try a different search.</p>
+    </div>
+  </div>
+</section>
