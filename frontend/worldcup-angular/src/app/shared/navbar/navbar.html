@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg sticky-top" style="background-color: #0a0a0a; border-bottom: 2px solid #f5c518;">
+  <div class="container">
+    
+    <!-- Logo -->
+    <a class="navbar-brand fw-black text-warning fs-4" routerLink="/">
+      ⚽ WorldCup Hub
+    </a>
+
+    <!-- Mobile Toggle Button -->
+    <button class="navbar-toggler border-warning" type="button" 
+            data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+
+    <!-- Nav Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold px-3 rounded" 
+             routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+            🏠 Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold px-3 rounded" 
+             routerLink="/history" routerLinkActive="active-link">
+            🏆 History
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold px-3 rounded" 
+             routerLink="/teams" routerLinkActive="active-link">
+            🌍 Teams
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold px-3 rounded" 
+             routerLink="/players" routerLinkActive="active-link">
+            ⭐ Players
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold px-3 rounded" 
+             routerLink="/matches" routerLinkActive="active-link">
+            📅 Matches
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold px-3 rounded" 
+             routerLink="/standings" routerLinkActive="active-link">
+            📊 Standings
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold px-3 rounded text-warning border border-warning" 
+             routerLink="/predictor" routerLinkActive="active-link">
+            🔮 Predictor
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
