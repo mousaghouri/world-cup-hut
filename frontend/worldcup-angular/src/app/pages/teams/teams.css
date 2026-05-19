@@ -1,0 +1,9 @@
+.card {
+  background-color: #1a1a1a !important;
+  border: 1px solid #333 !important;
+}
+
+.card p span,
+.card p {
+  color: #ffffff !important;
+}

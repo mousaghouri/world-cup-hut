@@ -1,1 +1,68 @@
-<p>matches works!</p>
+<!-- PAGE HEADER -->
+<section style="background: linear-gradient(135deg, #0a0a0a, #003a00); padding: 60px 0 40px;">
+  <div class="container text-center">
+    <p class="text-warning fw-bold text-uppercase" style="letter-spacing: 4px; font-size: 0.85rem;">FIFA World Cup 2026</p>
+    <h1 class="display-3 fw-black text-white mb-3">Matches & <span class="text-warning">Results</span></h1>
+    <p class="text-secondary fs-5">Schedule, results and upcoming fixtures</p>
+  </div>
+</section>
+
+<!-- FILTER TABS -->
+<section class="py-4" style="background-color: #1a1a1a;">
+  <div class="container">
+    <div class="d-flex gap-2 flex-wrap justify-content-center">
+      <button class="btn btn-warning fw-bold px-4 rounded-pill" (click)="filterMatches('all')">All Matches</button>
+      <button class="btn btn-outline-warning fw-bold px-4 rounded-pill" (click)="filterMatches('upcoming')">Upcoming</button>
+      <button class="btn btn-outline-warning fw-bold px-4 rounded-pill" (click)="filterMatches('completed')">Results</button>
+      <button class="btn btn-outline-warning fw-bold px-4 rounded-pill" (click)="filterMatches('final')">Finals</button>
+    </div>
+  </div>
+</section>
+
+<!-- MATCHES LIST -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-3">
+      @for (match of filteredMatches; track match.id) {
+      <div class="col-12 col-lg-8 mx-auto">
+        <div class="card p-4 rounded-4" style="background-color: #1a1a1a; border: 1px solid #333;">
+
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <span class="badge px-3 py-2 rounded-pill"
+              [style.background-color]="match.status === 'completed' ? '#1a8a3a' : '#1a4a8a'"
+              style="color:white; font-size:0.75rem;">
+              {{ match.status === 'completed' ? '✅ Final' : '📅 Upcoming' }}
+            </span>
+            <span style="color:#f5c518; font-weight:700; font-size:0.85rem;">{{ match.stage }}</span>
+            <span style="color:#888; font-size:0.85rem;">{{ match.date }}</span>
+          </div>
+
+          <div class="row align-items-center text-center">
+            <div class="col-4">
+              <div style="font-size:2rem; font-weight:900; color:#ffffff;">{{ match.homeTeam }}</div>
+            </div>
+            <div class="col-4">
+              @if (match.status === 'completed') {
+                <div style="font-size:2rem; font-weight:900; color:#f5c518;">
+                  {{ match.homeScore }} - {{ match.awayScore }}
+                </div>
+              } @else {
+                <div style="font-size:1.5rem; font-weight:900; color:#f5c518;">VS</div>
+                <div style="color:#888; font-size:0.8rem;" class="mt-1">{{ match.time }}</div>
+              }
+            </div>
+            <div class="col-4">
+              <div style="font-size:2rem; font-weight:900; color:#ffffff;">{{ match.awayTeam }}</div>
+            </div>
+          </div>
+
+          <div class="text-center mt-3">
+            <span style="color:#888; font-size:0.8rem;">📍 {{ match.venue }}</span>
+          </div>
+
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

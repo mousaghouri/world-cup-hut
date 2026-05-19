@@ -13,10 +13,10 @@ export class Teams {
   teams = [
     { name: 'Brazil', flag: '🇧🇷', confederation: 'CONMEBOL', titles: 5, appearances: 22, fifaRank: 5, starPlayer: 'Vinicius Jr', coach: 'Dorival Junior' },
     { name: 'Germany', flag: '🇩🇪', confederation: 'UEFA', titles: 4, appearances: 20, fifaRank: 16, starPlayer: 'Jamal Musiala', coach: 'Julian Nagelsmann' },
-    { name: 'Italy', flag: '🇮🇹', confederation: 'UEFA', titles: 4, appearances: 18, fifaRank: 9, starPlayer: 'Gianluigi Donnarumma', coach: 'Luciano Spalletti' },
+    { name: 'Italy', flag: '🇮🇹', confederation: 'UEFA', titles: 4, appearances: 18, fifaRank: 9, starPlayer: 'Donnarumma', coach: 'Luciano Spalletti' },
     { name: 'Argentina', flag: '🇦🇷', confederation: 'CONMEBOL', titles: 3, appearances: 18, fifaRank: 1, starPlayer: 'Lionel Messi', coach: 'Lionel Scaloni' },
     { name: 'France', flag: '🇫🇷', confederation: 'UEFA', titles: 2, appearances: 16, fifaRank: 2, starPlayer: 'Kylian Mbappe', coach: 'Didier Deschamps' },
-    { name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', confederation: 'UEFA', titles: 1, appearances: 16, fifaRank: 5, starPlayer: 'Jude Bellingham', coach: 'Gareth Southgate' },
+    { name: 'England', flag: '🏴', confederation: 'UEFA', titles: 1, appearances: 16, fifaRank: 5, starPlayer: 'Jude Bellingham', coach: 'Gareth Southgate' },
     { name: 'Spain', flag: '🇪🇸', confederation: 'UEFA', titles: 1, appearances: 16, fifaRank: 8, starPlayer: 'Pedri', coach: 'Luis de la Fuente' },
     { name: 'Uruguay', flag: '🇺🇾', confederation: 'CONMEBOL', titles: 2, appearances: 14, fifaRank: 17, starPlayer: 'Darwin Nunez', coach: 'Marcelo Bielsa' },
     { name: 'Netherlands', flag: '🇳🇱', confederation: 'UEFA', titles: 0, appearances: 11, fifaRank: 7, starPlayer: 'Virgil van Dijk', coach: 'Ronald Koeman' },

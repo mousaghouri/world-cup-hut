@@ -1,1 +1,177 @@
-<p>predictor works!</p>
+<!-- PAGE HEADER -->
+<section style="background: linear-gradient(135deg, #0a0a0a, #1a0a2e); padding: 60px 0 40px;">
+  <div class="container text-center">
+    <p class="text-warning fw-bold text-uppercase" style="letter-spacing: 4px; font-size: 0.85rem;">Statistics Based</p>
+    <h1 class="display-3 fw-black text-white mb-3">Match <span class="text-warning">Predictor</span></h1>
+    <p class="text-secondary fs-5">Select two teams and we predict the winner based on FIFA rank, titles and history</p>
+  </div>
+</section>
+
+<!-- PREDICTOR FORM -->
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <div class="card p-5 rounded-4" style="background-color: #1a1a1a; border: 2px solid #f5c518;">
+
+          <h3 class="text-center text-white fw-bold mb-2">⚽ Select Two Teams</h3>
+          <p class="text-center text-secondary mb-4 small">World Cup matches are played on neutral ground</p>
+
+          <div class="row g-4 mb-4 align-items-end">
+            <div class="col-12 col-md-5">
+              <label style="color:#f5c518; font-weight:600;" class="mb-2 d-block">Team 1</label>
+              <select class="form-select bg-dark text-white border-secondary"
+                [(ngModel)]="homeTeam"
+                style="border-radius: 10px; padding: 12px;">
+                <option value="">Select team...</option>
+                @for (team of teams; track team.name) {
+                  <option [value]="team.name">{{ team.name }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="col-12 col-md-2 text-center pb-2">
+              <span style="color:#f5c518; font-size:2rem; font-weight:900;">VS</span>
+            </div>
+
+            <div class="col-12 col-md-5">
+              <label style="color:#f5c518; font-weight:600;" class="mb-2 d-block">Team 2</label>
+              <select class="form-select bg-dark text-white border-secondary"
+                [(ngModel)]="awayTeam"
+                style="border-radius: 10px; padding: 12px;">
+                <option value="">Select team...</option>
+                @for (team of teams; track team.name) {
+                  <option [value]="team.name">{{ team.name }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          @if (errorMessage) {
+            <div class="mb-3 p-3 rounded-3 text-center" style="background-color:#4a1a1a; border:1px solid #8a2a2a;">
+              <span style="color:#ff4a4a; font-weight:600;">❌ {{ errorMessage }}</span>
+            </div>
+          }
+
+          <button class="btn btn-warning btn-lg w-100 fw-bold rounded-pill py-3"
+            (click)="predict()">
+            🔮 Predict Winner
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULT -->
+@if (result) {
+  <section class="py-5" style="background-color: #0d0d0d;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+
+          <div class="card p-5 rounded-4 text-center mb-4"
+            style="background: linear-gradient(135deg, #1a1a00, #2a2a00); border: 3px solid #f5c518;">
+            <div style="font-size:5rem;">🏆</div>
+            <h2 style="color:#f5c518; font-weight:900; font-size:2.5rem;" class="mt-3">
+              {{ result.winner === 'Draw' ? '🤝 Draw Predicted' : result.winner + ' Wins!' }}
+            </h2>
+            <p style="color:#aaa;" class="mt-2">Based on FIFA Rankings, World Cup Titles and History</p>
+          </div>
+
+          <div class="card p-4 rounded-4 mb-4" style="background-color:#1a1a1a; border:1px solid #333;">
+            <h5 style="color:white;" class="fw-bold mb-4 text-center">Win Probability</h5>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between mb-1">
+                <span style="color:white; font-weight:600;">{{ result.homeTeam }}</span>
+                <span style="color:#f5c518; font-weight:700;">{{ result.homeWinPct }}%</span>
+              </div>
+              <div style="background:#333; border-radius:10px; height:20px;">
+                <div style="background:#f5c518; border-radius:10px; height:100%;"
+                  [style.width]="result.homeWinPct + '%'">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="d-flex justify-content-between mb-1">
+                <span style="color:white; font-weight:600;">{{ result.awayTeam }}</span>
+                <span style="color:#4a8aff; font-weight:700;">{{ result.awayWinPct }}%</span>
+              </div>
+              <div style="background:#333; border-radius:10px; height:20px;">
+                <div style="background:#4a8aff; border-radius:10px; height:100%;"
+                  [style.width]="result.awayWinPct + '%'">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-4 rounded-4 mb-4" style="background-color:#1a1a1a; border:1px solid #333;">
+            <h5 style="color:white;" class="fw-bold mb-4 text-center">Team Comparison</h5>
+            <div class="row text-center g-3">
+              <div class="col-4">
+                <div style="color:#f5c518; font-weight:900; font-size:1.5rem;">{{ result.homeTitles }}</div>
+                <div style="color:#888; font-size:0.8rem;">{{ result.homeTeam }} Titles</div>
+              </div>
+              <div class="col-4">
+                <div style="color:#888; font-size:0.85rem; padding-top:8px;">World Cup Titles</div>
+              </div>
+              <div class="col-4">
+                <div style="color:#4a8aff; font-weight:900; font-size:1.5rem;">{{ result.awayTitles }}</div>
+                <div style="color:#888; font-size:0.8rem;">{{ result.awayTeam }} Titles</div>
+              </div>
+
+              <div class="col-4">
+                <div style="color:#f5c518; font-weight:900; font-size:1.5rem;">#{{ result.homeRank }}</div>
+                <div style="color:#888; font-size:0.8rem;">{{ result.homeTeam }} Rank</div>
+              </div>
+              <div class="col-4">
+                <div style="color:#888; font-size:0.85rem; padding-top:8px;">FIFA Ranking</div>
+              </div>
+              <div class="col-4">
+                <div style="color:#4a8aff; font-weight:900; font-size:1.5rem;">#{{ result.awayRank }}</div>
+                <div style="color:#888; font-size:0.8rem;">{{ result.awayTeam }} Rank</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-outline-warning btn-lg w-100 fw-bold rounded-pill py-3"
+            (click)="savePrediction()">
+            💾 Save This Prediction
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+@if (savedPredictions.length > 0) {
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-white fw-bold text-center mb-5">💾 Saved <span class="text-warning">Predictions</span></h2>
+      <div class="row g-3">
+        @for (p of savedPredictions; track p.id) {
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card p-4 rounded-4" style="background-color:#1a1a1a; border:1px solid #333;">
+              <p style="color:white; font-weight:700; margin-bottom:5px;">
+                {{ p.homeTeam }} vs {{ p.awayTeam }}
+              </p>
+              <p style="color:#f5c518; font-weight:600; margin-bottom:5px;">
+                🏆 {{ p.predictedWinner }}
+              </p>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <small style="color:#888;">{{ p.date }}</small>
+                <button class="btn btn-sm"
+                  style="background-color:#4a1a1a; color:#ff4a4a; border:none; border-radius:8px;"
+                  (click)="deletePrediction(p.id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+}

@@ -25,50 +25,44 @@
     <div class="row g-4">
       @for (player of filteredPlayers; track player.name) {
       <div class="col-12 col-md-6 col-lg-4">
-        <div class="card p-4 rounded-4 h-100">
+        <div class="card p-4 rounded-4 h-100" style="background-color: #1a1a1a !important; border: 1px solid #333;">
 
-          <!-- Player Name Row -->
+          <h5 class="fw-bold mb-1" style="color: #f5c518;">{{ player.name }}</h5>
+          <p style="color: #ccc;" class="small mb-2">{{ player.country }}</p>
+
           <div class="mb-3">
-            <h5 class="text-warning fw-bold mb-1" style="font-size: 1.1rem;">{{ player.name }}</h5>
-            <p class="text-white small mb-1">{{ player.country }}</p>
-            <span class="badge px-2 py-1 me-1"
-              style="background-color: #f5c518; color: #000; font-size: 0.7rem;">
-              {{ player.position }}
-            </span>
-            <span class="badge px-2 py-1"
+            <span class="badge me-1" style="background-color: #f5c518; color: #000;">{{ player.position }}</span>
+            <span class="badge"
               [style.background-color]="player.category === 'legend' ? '#8B6914' : player.category === 'goalkeeper' ? '#1a4a8a' : '#1a8a3a'"
-              style="color: #fff; font-size: 0.7rem;">
+              style="color: #fff;">
               {{ player.category === 'legend' ? 'Legend' : player.category === 'goalkeeper' ? 'Goalkeeper' : 'Current Star' }}
             </span>
           </div>
 
-          <!-- Stats Row -->
           <div class="row g-2 text-center mb-3">
-            <div class="col-4" style="background-color: #1a1a1a; border-radius: 8px; padding: 10px 5px;">
-              <div class="text-warning fw-bold fs-4">{{ player.wcGoals }}</div>
-              <div class="text-secondary" style="font-size: 0.65rem;">WC GOALS</div>
+            <div class="col-4" style="background:#111; border-radius:8px; padding:10px 5px;">
+              <div style="color:#f5c518; font-weight:900; font-size:1.5rem;">{{ player.wcGoals }}</div>
+              <div style="color:#888; font-size:0.65rem;">WC GOALS</div>
             </div>
-            <div class="col-4" style="background-color: #1a1a1a; border-radius: 8px; padding: 10px 5px;">
-              <div class="text-warning fw-bold fs-4">{{ player.wcApps }}</div>
-              <div class="text-secondary" style="font-size: 0.65rem;">WC APPS</div>
+            <div class="col-4" style="background:#111; border-radius:8px; padding:10px 5px;">
+              <div style="color:#f5c518; font-weight:900; font-size:1.5rem;">{{ player.wcApps }}</div>
+              <div style="color:#888; font-size:0.65rem;">WC APPS</div>
             </div>
-            <div class="col-4" style="background-color: #1a1a1a; border-radius: 8px; padding: 10px 5px;">
-              <div class="text-warning fw-bold fs-4">{{ player.titles }}</div>
-              <div class="text-secondary" style="font-size: 0.65rem;">TITLES</div>
+            <div class="col-4" style="background:#111; border-radius:8px; padding:10px 5px;">
+              <div style="color:#f5c518; font-weight:900; font-size:1.5rem;">{{ player.titles }}</div>
+              <div style="color:#888; font-size:0.65rem;">TITLES</div>
             </div>
           </div>
 
-          <hr style="border-color: #333;">
-          <div class="row g-1">
-            <div class="col-12">
-              <span class="text-secondary small">Born: </span>
-              <span class="text-white small fw-semibold">{{ player.born }}</span>
-            </div>
-            <div class="col-12">
-              <span class="text-secondary small">Club: </span>
-              <span class="text-white small fw-semibold">{{ player.club }}</span>
-            </div>
-          </div>
+          <hr style="border-color: #444;">
+          <p class="mb-1">
+            <span style="color:#888; font-size:0.85rem;">Born: </span>
+            <span style="color:#fff; font-size:0.85rem; font-weight:bold;">{{ player.born }}</span>
+          </p>
+          <p class="mb-0">
+            <span style="color:#888; font-size:0.85rem;">Club: </span>
+            <span style="color:#fff; font-size:0.85rem; font-weight:bold;">{{ player.club }}</span>
+          </p>
 
         </div>
       </div>
@@ -80,28 +74,28 @@
 <!-- TOP SCORERS TABLE -->
 <section class="py-5" style="background-color: #0d0d0d;">
   <div class="container">
-    <h2 class="text-white fw-bold text-center mb-5">All-Time World Cup <span class="text-warning">Top Scorers</span></h2>
+    <h2 style="color:white;" class="fw-bold text-center mb-5">All-Time World Cup <span style="color:#f5c518;">Top Scorers</span></h2>
     <div class="row justify-content-center">
       <div class="col-12 col-lg-8">
-        <div class="card rounded-4 overflow-hidden">
+        <div class="card rounded-4 overflow-hidden" style="background-color:#1a1a1a;">
           <table class="table table-dark table-hover mb-0">
             <thead style="background-color: #f5c518;">
               <tr>
-                <th class="text-dark py-3">#</th>
-                <th class="text-dark py-3">Player</th>
-                <th class="text-dark py-3">Country</th>
-                <th class="text-dark py-3">Goals</th>
-                <th class="text-dark py-3">Years</th>
+                <th style="color:#000;" class="py-3">#</th>
+                <th style="color:#000;" class="py-3">Player</th>
+                <th style="color:#000;" class="py-3">Country</th>
+                <th style="color:#000;" class="py-3">Goals</th>
+                <th style="color:#000;" class="py-3">Years</th>
               </tr>
             </thead>
             <tbody>
               @for (scorer of topScorers; track scorer.name; let i = $index) {
               <tr>
-                <td class="text-warning fw-bold">{{ i + 1 }}</td>
-                <td class="text-white fw-semibold">{{ scorer.name }}</td>
-                <td class="text-secondary">{{ scorer.country }}</td>
+                <td style="color:#f5c518; font-weight:bold;">{{ i + 1 }}</td>
+                <td style="color:white; font-weight:600;">{{ scorer.name }}</td>
+                <td style="color:#aaa;">{{ scorer.country }}</td>
                 <td><span class="badge bg-warning text-dark fw-bold">{{ scorer.goals }}</span></td>
-                <td class="text-secondary small">{{ scorer.years }}</td>
+                <td style="color:#aaa; font-size:0.85rem;">{{ scorer.years }}</td>
               </tr>
               }
             </tbody>
