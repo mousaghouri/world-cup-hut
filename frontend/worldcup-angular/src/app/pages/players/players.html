@@ -26,10 +26,8 @@
       @for (player of filteredPlayers; track player.name) {
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card p-4 rounded-4 h-100" style="background-color: #1a1a1a !important; border: 1px solid #333;">
-
           <h5 class="fw-bold mb-1" style="color: #f5c518;">{{ player.name }}</h5>
           <p style="color: #ccc;" class="small mb-2">{{ player.country }}</p>
-
           <div class="mb-3">
             <span class="badge me-1" style="background-color: #f5c518; color: #000;">{{ player.position }}</span>
             <span class="badge"
@@ -38,7 +36,6 @@
               {{ player.category === 'legend' ? 'Legend' : player.category === 'goalkeeper' ? 'Goalkeeper' : 'Current Star' }}
             </span>
           </div>
-
           <div class="row g-2 text-center mb-3">
             <div class="col-4" style="background:#111; border-radius:8px; padding:10px 5px;">
               <div style="color:#f5c518; font-weight:900; font-size:1.5rem;">{{ player.wcGoals }}</div>
@@ -53,7 +50,6 @@
               <div style="color:#888; font-size:0.65rem;">TITLES</div>
             </div>
           </div>
-
           <hr style="border-color: #444;">
           <p class="mb-1">
             <span style="color:#888; font-size:0.85rem;">Born: </span>
@@ -63,7 +59,6 @@
             <span style="color:#888; font-size:0.85rem;">Club: </span>
             <span style="color:#fff; font-size:0.85rem; font-weight:bold;">{{ player.club }}</span>
           </p>
-
         </div>
       </div>
       }
@@ -74,7 +69,7 @@
 <!-- TOP SCORERS TABLE -->
 <section class="py-5" style="background-color: #0d0d0d;">
   <div class="container">
-    <h2 style="color:white;" class="fw-bold text-center mb-5">All-Time World Cup <span style="color:#f5c518;">Top Scorers</span></h2>
+    <h2 class="text-white fw-bold text-center mb-5">All-Time World Cup <span class="text-warning">Top Scorers</span></h2>
     <div class="row justify-content-center">
       <div class="col-12 col-lg-8">
         <div class="card rounded-4 overflow-hidden" style="background-color:#1a1a1a;">
