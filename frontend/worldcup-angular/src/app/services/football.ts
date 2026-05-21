@@ -10,7 +10,7 @@ export class FootballService {
 
   private apiKey = '498ce2105ea24581ae3a5748102b87a2';
   private apiHost = 'v3.football.api-sports.io';
-  private baseUrl = 'https://v3.football.api-sports.io';
+  private baseUrl = 'https://localhost:7230';
 
   private headers = new HttpHeaders({
     'x-rapidapi-key': this.apiKey,
