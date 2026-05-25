@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-predictor',
@@ -9,7 +10,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './predictor.html',
   styleUrl: './predictor.css'
 })
-export class Predictor {
+export class Predictor implements OnInit {
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:5278/api/predictions';
 
   teams = [
     { name: 'Argentina', titles: 3, appearances: 18, fifaRank: 1 },
@@ -45,6 +48,17 @@ export class Predictor {
   errorMessage: string = '';
   savedPredictions: any[] = [];
 
+  ngOnInit() {
+    this.loadPredictions();
+  }
+
+  loadPredictions() {
+    this.http.get<any[]>(this.apiUrl).subscribe({
+      next: (data) => this.savedPredictions = data,
+      error: (err) => console.error('Error loading predictions:', err)
+    });
+  }
+
   predict() {
     this.errorMessage = '';
     this.result = null;
@@ -59,7 +73,6 @@ export class Predictor {
       return;
     }
 
-    // Calculate immediately — no timeout
     const home = this.teams.find(t => t.name === this.homeTeam)!;
     const away = this.teams.find(t => t.name === this.awayTeam)!;
 
@@ -102,17 +115,23 @@ export class Predictor {
 
   savePrediction() {
     if (this.result) {
-      this.savedPredictions.unshift({
-        id: Date.now(),
+      const payload = {
         homeTeam: this.result.homeTeam,
         awayTeam: this.result.awayTeam,
-        predictedWinner: this.result.winner,
-        date: new Date().toLocaleDateString()
+        predictedWinner: this.result.winner
+      };
+
+      this.http.post(this.apiUrl, payload).subscribe({
+        next: () => this.loadPredictions(),
+        error: (err) => console.error('Error saving prediction:', err)
       });
     }
   }
 
   deletePrediction(id: number) {
-    this.savedPredictions = this.savedPredictions.filter((p: any) => p.id !== id);
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe({
+      next: () => this.loadPredictions(),
+      error: (err) => console.error('Error deleting prediction:', err)
+    });
   }
 }

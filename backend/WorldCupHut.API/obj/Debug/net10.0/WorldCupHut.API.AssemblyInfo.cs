@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorldCupHut.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79ef1ce99787d6906bacec0ed041b79cf118c59c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6647b9f67bd1e21a2caf4010e00b4b5da3282bbb")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorldCupHut.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorldCupHut.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
